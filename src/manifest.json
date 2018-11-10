@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Gearbest",
+  "version": "1.0",
+  "description": "Some Extension!",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.gearbest.com/*"],
+      "js": ["content-script.js"]
+    }
+  ]
+}
