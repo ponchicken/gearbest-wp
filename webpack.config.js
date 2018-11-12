@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   devtool: "source-map",
+  mode: "production",
   entry: {
     "content-script": "./src/content/script.js",
     "background": "./src/background/script.js"
@@ -22,10 +23,7 @@ module.exports = {
         exclude: [
           resolve(__dirname, "/node_modules/")
         ],
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env"]
-        }
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
@@ -37,7 +35,7 @@ module.exports = {
   plugins: [
     new ChromeExtensionReloader(),
     new CopyWebpackPlugin([{ from: "./src/manifest.json", flatten: true }])
-  ]
+  ].filter(plugin => !!plugin)
 }
 
 // module.exports = {
